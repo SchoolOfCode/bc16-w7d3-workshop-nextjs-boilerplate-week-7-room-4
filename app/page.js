@@ -9,7 +9,7 @@ export default function Home() {
       <HeroSection />
 
       <hr className="hidden-hr" />
-      <h2>How it works.</h2>
+      <h2 className="home-h2">How it works.</h2>
       <hr />
 
       <ArticleContainer />

@@ -85,4 +85,9 @@ footer a {
   .hidden-hr {
     display: block;
   }
+  h2 {
+    margin: 0 auto;
+    padding: 1em;
+    font-weight: 400;
+  }
 }

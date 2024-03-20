@@ -1,6 +1,7 @@
 // import { Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "@/src/footer/footer";
+import FoundersButton from "@/src/button/FoundersButton";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -31,6 +32,7 @@ export default function RootLayout({ children }) {
         <header className="logo">
           <p>🔥 Fireplace Palace</p>
         </header>
+        <FoundersButton />
         <main>{children}</main>
         <Footer footerItems={footerItems} />
       </body>

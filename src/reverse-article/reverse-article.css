@@ -1,0 +1,17 @@
+article {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-top: 1em;
+}
+
+article img {
+	width: 50%;
+	margin: 0 auto;
+}
+
+article p {
+	text-align: center;
+	padding: 1em;
+}
