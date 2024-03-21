@@ -1,9 +1,9 @@
-// import { Inter } from "next/font/google";
+import { Aleo } from "next/font/google";
 import "./globals.css";
 import Footer from "@/src/footer/footer";
 import FoundersButton from "@/src/button/FoundersButton";
 
-// const inter = Inter({ subsets: ["latin"] });
+const aleo = Aleo({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Create Next App",
@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
     )
   );
   return (
-    <html lang="en">
+    <html lang="en" className={aleo.className}>
       <body className="container">
         <header className="logo">
           <p>🔥 Fireplace Palace</p>
