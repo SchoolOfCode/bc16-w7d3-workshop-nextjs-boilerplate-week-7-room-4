@@ -28,3 +28,7 @@
   - will be a div element
   - will have a useState - set current visibility to invisible USING CSS CLASS
   - will have an onClick - check if currently visible - if visible set to invisible, if invisible set to visible USING CSS CLASS
+
+# HACKATHON
+
+- list item
