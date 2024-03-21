@@ -12,3 +12,19 @@
   - Copy across jsx and css files
   - Import header and footer into layout.js
   - Import body into page.js
+
+# MVP2
+
+- Create new page
+
+# MVP2
+
+- Link pages using button
+
+# MVP4
+
+- Add toggling menu which contains link button
+  - create new component called menu - that will contain the button component
+  - will be a div element
+  - will have a useState - set current visibility to invisible USING CSS CLASS
+  - will have an onClick - check if currently visible - if visible set to invisible, if invisible set to visible USING CSS CLASS
