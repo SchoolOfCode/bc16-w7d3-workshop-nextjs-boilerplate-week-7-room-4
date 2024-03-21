@@ -52,10 +52,10 @@ function useCountryData() {
 	const [data, setData] = useState("");
 
 	async function fetchData(country) {
+		const URL = `https://seal-app-336e8.ondigitalocean.app/reviews`;
+
 		try {
-			const response = await fetch(
-				`https://seal-app-336e8.ondigitalocean.app/reviews?country=${country}`
-			);
+			const response = await fetch(`${URL}?country=${country}`);
 			const responseData = await response.json();
 			setData(responseData);
 		} catch (error) {
