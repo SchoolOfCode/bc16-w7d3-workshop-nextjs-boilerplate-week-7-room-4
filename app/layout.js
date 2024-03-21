@@ -1,7 +1,7 @@
 import { Aleo } from "next/font/google";
 import "./globals.css";
 import Footer from "@/src/footer/footer";
-import FoundersButton from "@/src/button/FoundersButton";
+import Menu from "@/src/menu/menu";
 
 const aleo = Aleo({ subsets: ["latin"] });
 
@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
         <header className="logo">
           <p>🔥 Fireplace Palace</p>
         </header>
-        <FoundersButton />
+        <Menu />
         <main>{children}</main>
         <Footer footerItems={footerItems} />
       </body>
