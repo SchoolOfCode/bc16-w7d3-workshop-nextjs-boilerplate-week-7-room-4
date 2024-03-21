@@ -31,4 +31,14 @@
 
 # HACKATHON
 
-- list item
+## Objective
+
+- A new component on the home page that allows a user to select (click) their country and see the latest review (fetch data).
+
+- Write the social proof component in its default state
+- include css
+- write files in src
+- render in home page.js
+- CHECK POINT
+
+### add state to the one button
