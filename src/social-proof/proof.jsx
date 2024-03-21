@@ -1,28 +1,80 @@
+// "use client";
+// import React, { useState, useEffect } from "react";
+
+// export default function Proof() {
+// 	const [country, setCountry] = useState("");
+// 	const [data, setData] = useState("");
+
+// 	async function getResponse(country) {
+// 		const response = await fetch(
+// 			`https://seal-app-336e8.ondigitalocean.app/reviews?country=${country}`
+// 		);
+// 		const data = await response.json();
+// 		return data;
+// 	}
+
+// 	useEffect(() => {
+// 		const name = async () => {
+// 			const response = await getResponse(country);
+// 			setData(response);
+// 		};
+// 		name();
+// 	}, [country]);
+
+// 	// useEffect(()=>{
+// 	// 	fetch(`https://seal-app-336e8.ondigitalocean.app/reviews?country=${country}`)
+// 	// 		.then(response=>response.json())
+// 	// 		.then(json=>setData(json))
+// 	// }, [country])
+// 	return (
+// 		<section className="social-proof-section">
+// 			<div className="button-container">
+// 				<button onClick={() => setCountry("england")}>England</button>
+// 				<button onClick={() => setCountry("wales")}>Wales</button>
+// 				<button onClick={() => setCountry("scotland")}>Scotland</button>
+// 			</div>
+// 			<div className="social-card">
+// 				<p>{data.text}</p>
+// 				<h1>
+// 					{data.author}-{data.location}
+// 				</h1>
+// 			</div>
+// 		</section>
+// 	);
+// }
+// ************************************************
+
 "use client";
 import React, { useState, useEffect } from "react";
 
-export default function Proof() {
+function useCountryData() {
 	const [country, setCountry] = useState("");
-	const [data, setData] = useState('')
+	const [data, setData] = useState("");
 
-	async function getResponse(country){
-		const response = await fetch(`https://seal-app-336e8.ondigitalocean.app/reviews?country=${country}`)
-		const data = await response.json()
-		return data
+	async function fetchData(country) {
+		try {
+			const response = await fetch(
+				`https://seal-app-336e8.ondigitalocean.app/reviews?country=${country}`
+			);
+			const responseData = await response.json();
+			setData(responseData);
+		} catch (error) {
+			console.error("Error fetching data:", error);
+		}
 	}
 
-	// useEffect(()=>{(
-	// 	async function(){
-	// 		setData(await getResponse(country))
-	// 	}
-	// )},
-	// [country])
+	useEffect(() => {
+		if (country) {
+			fetchData(country);
+		}
+	}, [country]);
 
-	useEffect(()=>{
-		fetch(`https://seal-app-336e8.ondigitalocean.app/reviews?country=${country}`)
-			.then(response=>response.json())
-			.then(json=>setData(json))
-	}, [country])
+	return { country, setCountry, data };
+}
+
+export default function Proof() {
+	const { country, setCountry, data } = useCountryData();
+
 	return (
 		<section className="social-proof-section">
 			<div className="button-container">
@@ -32,7 +84,10 @@ export default function Proof() {
 			</div>
 			<div className="social-card">
 				<p>{data.text}</p>
-				<h1>{data.author}-{data.location}</h1>
+				<h1>
+					{data.author}
+					{data.location}
+				</h1>
 			</div>
 		</section>
 	);
