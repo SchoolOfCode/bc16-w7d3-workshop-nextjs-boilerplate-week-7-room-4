@@ -85,8 +85,7 @@ export default function Proof() {
 			<div className="social-card">
 				<p>{data.text}</p>
 				<h1>
-					{data.author}
-					{data.location}
+					{data.author} - {data.location}
 				</h1>
 			</div>
 		</section>
