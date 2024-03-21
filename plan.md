@@ -41,4 +41,24 @@
 - render in home page.js
 - CHECK POINT
 
-### add state to the one button
+### add state to the one buttons
+
+- import useState
+- make state for country
+- write the component
+  - return 3 buttons
+  - add onClick with function that sets state to that country
+  - have a h1 (temporary) displays the resource
+
+### useEffect
+
+use the Effect module to run a simple console log every time
+component renders
+
+### add component to Home page
+
+might be a good point to add some styles
+
+### update the useEffect module
+
+- fetch data from the api
