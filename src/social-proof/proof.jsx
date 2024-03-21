@@ -3,7 +3,26 @@ import React, { useState, useEffect } from "react";
 
 export default function Proof() {
 	const [country, setCountry] = useState("");
+	const [data, setData] = useState('')
 
+	async function getResponse(country){
+		const response = await fetch(`https://seal-app-336e8.ondigitalocean.app/reviews?country=${country}`)
+		const data = await response.json()
+		return data
+	}
+
+	// useEffect(()=>{(
+	// 	async function(){
+	// 		setData(await getResponse(country))
+	// 	}
+	// )},
+	// [country])
+
+	useEffect(()=>{
+		fetch(`https://seal-app-336e8.ondigitalocean.app/reviews?country=${country}`)
+			.then(response=>response.json())
+			.then(json=>setData(json))
+	}, [country])
 	return (
 		<section className="social-proof-section">
 			<div className="button-container">
@@ -11,7 +30,10 @@ export default function Proof() {
 				<button onClick={() => setCountry("wales")}>Wales</button>
 				<button onClick={() => setCountry("scotland")}>Scotland</button>
 			</div>
-			<h1>{country}</h1>
+			<div className="social-card">
+				<p>{data.text}</p>
+				<h1>{data.author}-{data.location}</h1>
+			</div>
 		</section>
 	);
 }
