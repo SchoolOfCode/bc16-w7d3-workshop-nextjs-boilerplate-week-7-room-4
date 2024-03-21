@@ -7,8 +7,8 @@ export default function HeroSection(){
         <section className="hero-section">
             <Image
                 className="hero-image"
-                width={1000}
-                height={1000}
+                width={10000}
+                height={10000}
                 src="/hero-mobile.png"
                 alt="Fireplace Image"
             />
