@@ -8,7 +8,25 @@
 .logo {
   font-size: 1.25em;
   font-weight: bolder;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  align-items: center;
 }
+
+.menu-button{
+  border: none;
+  background-color: #FFF;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-button img{
+  width: 50px;
+}
+
 
 .phone-number {
   color: #fff;
@@ -96,6 +114,35 @@ footer a {
 .trusted-message {
   text-align: center;
   font-weight: 500;
+}
+
+.fullscreen-menu{
+  background-color: rgb(234, 126, 23);
+  position: fixed;
+ left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 100000;
+  width: 100%;
+  max-width: 370px;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close-button{
+  align-self: flex-end;
+  background-color: rgb(234, 126, 23);
+  border: none;
+}
+
+.close-button img{
+  width: 50px;
+}
+
+.menu-container{
+  display: flex;
+  flex-direction: column;
 }
 
 

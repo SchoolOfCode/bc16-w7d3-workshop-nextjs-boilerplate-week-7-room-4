@@ -1,10 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Link from "next/link";
 
-export default function FoundersButton() {
-	const [link, setLinkText] = useState("/founders");
+export default function FoundersButton({pageName}) {
+	const [link, setLinkText] = useState(`/${pageName}`);
 	const [text, setText] = useState("Founders");
 
 	function handleClick() {
