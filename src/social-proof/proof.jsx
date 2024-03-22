@@ -27,17 +27,17 @@ function useCountryData() {
 }
 
 function Card({ data, country }) {
-	if (country!=='') {
-	  return (
-	  	<div className="social-card">
-			<p className="card-text">{data.text}</p>
-			<p className="card-info">
-				{data.author} - {data.location}
-			</p>
-		</div>
-	  )
+	if (country !== "") {
+		return (
+			<div className="social-card">
+				<p className="card-text">{data.text}</p>
+				<p className="card-info">
+					{data.author} - {data.location}
+				</p>
+			</div>
+		);
 	}
-  }
+}
 
 export default function Proof() {
 	const { country, setCountry, data } = useCountryData();
@@ -46,13 +46,17 @@ export default function Proof() {
 		<section className="social-proof-section">
 			<h2 className="home-h2">Trusted.</h2>
 			<hr />
-			<p className="trusted-message">{"We've got thousands of happy customers all over the UK. Choose your country to see the latest review:"}</p>
+			<p className="trusted-message">
+				{
+					"We've got thousands of happy customers all over the UK. Choose your country to see the latest review:"
+				}
+			</p>
 			<div className="button-container">
 				<button onClick={() => setCountry("england")}>England</button>
 				<button onClick={() => setCountry("wales")}>Wales</button>
 				<button onClick={() => setCountry("scotland")}>Scotland</button>
 			</div>
-			<Card data={data} country={country}/>			
+			<Card data={data} country={country} />
 		</section>
 	);
 }
