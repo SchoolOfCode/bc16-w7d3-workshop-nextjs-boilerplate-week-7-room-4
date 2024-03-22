@@ -1,49 +1,3 @@
-// "use client";
-// import React, { useState, useEffect } from "react";
-
-// export default function Proof() {
-// 	const [country, setCountry] = useState("");
-// 	const [data, setData] = useState("");
-
-// 	async function getResponse(country) {
-// 		const response = await fetch(
-// 			`https://seal-app-336e8.ondigitalocean.app/reviews?country=${country}`
-// 		);
-// 		const data = await response.json();
-// 		return data;
-// 	}
-
-// 	useEffect(() => {
-// 		const name = async () => {
-// 			const response = await getResponse(country);
-// 			setData(response);
-// 		};
-// 		name();
-// 	}, [country]);
-
-// 	// useEffect(()=>{
-// 	// 	fetch(`https://seal-app-336e8.ondigitalocean.app/reviews?country=${country}`)
-// 	// 		.then(response=>response.json())
-// 	// 		.then(json=>setData(json))
-// 	// }, [country])
-// 	return (
-// 		<section className="social-proof-section">
-// 			<div className="button-container">
-// 				<button onClick={() => setCountry("england")}>England</button>
-// 				<button onClick={() => setCountry("wales")}>Wales</button>
-// 				<button onClick={() => setCountry("scotland")}>Scotland</button>
-// 			</div>
-// 			<div className="social-card">
-// 				<p>{data.text}</p>
-// 				<h1>
-// 					{data.author}-{data.location}
-// 				</h1>
-// 			</div>
-// 		</section>
-// 	);
-// }
-// ************************************************
-
 "use client";
 import React, { useState, useEffect } from "react";
 
@@ -72,12 +26,15 @@ function useCountryData() {
 	return { country, setCountry, data };
 }
 
-function CardInfo({ data, country }) {
+function Card({ data, country }) {
 	if (country!=='') {
 	  return (
-	  	<p className="card-info">
-	  		{data.author} - {data.location}
-  		</p>
+	  	<div className="social-card">
+			<p className="card-text">{data.text}</p>
+			<p className="card-info">
+				{data.author} - {data.location}
+			</p>
+		</div>
 	  )
 	}
   }
@@ -87,15 +44,15 @@ export default function Proof() {
 
 	return (
 		<section className="social-proof-section">
+			<h2 className="home-h2">Trusted.</h2>
+			<hr />
+			<p className="trusted-message">{"We've got thousands of happy customers all over the UK. Choose your country to see the latest review:"}</p>
 			<div className="button-container">
 				<button onClick={() => setCountry("england")}>England</button>
 				<button onClick={() => setCountry("wales")}>Wales</button>
 				<button onClick={() => setCountry("scotland")}>Scotland</button>
 			</div>
-			<div className="social-card">
-				<p>{data.text}</p>
-				<CardInfo data={data} country={country}/>
-			</div>
+			<Card data={data} country={country}/>			
 		</section>
 	);
 }

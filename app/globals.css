@@ -21,10 +21,16 @@ h2 {
   font-weight: 400;
 }
 
+.home-h2 {
+  padding: 1em 1em 0.5em 1em;
+  font-weight: 400;
+  text-align: center;
+}
+
 hr {
-  border-color: black;
-  height: 2px;
-  margin: 1em 0;
+  border: none;
+  background-color: #000;
+  height: 1px;
   opacity: 0.2;
 }
 
@@ -48,6 +54,50 @@ footer a {
 .hidden-hr {
   display: none;
 }
+
+.social-card {
+  text-align: center;
+}
+
+.button-container{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1em;
+}
+
+.button-container button {
+  color: #FFF;
+  background-color: rgb(101,101,101);
+  border: none;
+  padding: 0.7em 1.8em;
+  border-radius: 3px;
+  font-family: serif;
+  font-size: 100%;
+  transition: all 0.2s ease-in-out;
+}
+
+.button-container button:focus {
+  background-color: rgb(234, 126, 23);
+  color: #000;
+}
+
+.card-info {
+  text-align: right;
+  text-decoration: underline;
+  font-size: smaller;
+}
+
+.card-text {
+    background-color: rgb(230, 230, 230);
+    padding: 0.5em 2em;
+    border-radius: 1em;
+}
+
+.trusted-message {
+  text-align: center;
+  font-weight: 500;
+}
+
 
 @media (min-width: 1024px) {
   .container {
