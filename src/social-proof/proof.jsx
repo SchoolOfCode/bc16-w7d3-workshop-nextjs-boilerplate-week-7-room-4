@@ -72,6 +72,16 @@ function useCountryData() {
 	return { country, setCountry, data };
 }
 
+function CardInfo({ data, country }) {
+	if (country!=='') {
+	  return (
+	  	<p className="card-info">
+	  		{data.author} - {data.location}
+  		</p>
+	  )
+	}
+  }
+
 export default function Proof() {
 	const { country, setCountry, data } = useCountryData();
 
@@ -84,9 +94,7 @@ export default function Proof() {
 			</div>
 			<div className="social-card">
 				<p>{data.text}</p>
-				<h1>
-					{data.author} - {data.location}
-				</h1>
+				<CardInfo data={data} country={country}/>
 			</div>
 		</section>
 	);
