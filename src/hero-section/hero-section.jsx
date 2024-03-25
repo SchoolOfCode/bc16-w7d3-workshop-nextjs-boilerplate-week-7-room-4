@@ -15,8 +15,8 @@ export default function HeroSection(){
 
             <div className="orange-box-container">
                 <section className="orange-box">
-                    <h1>Discover the Perfect Fireplace ...</h1>
-                    <p>
+                    <h1 id="orange-box-heading">Discover the Perfect Fireplace ...</h1>
+                    <p id="contact-info">
                         Book consultation:{" "}
                         <span className="phone-number">0121 345 6789</span>
                     </p>

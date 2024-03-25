@@ -28,3 +28,37 @@
   - will be a div element
   - will have a useState - set current visibility to invisible USING CSS CLASS
   - will have an onClick - check if currently visible - if visible set to invisible, if invisible set to visible USING CSS CLASS
+
+# HACKATHON
+
+## Objective
+
+- A new component on the home page that allows a user to select (click) their country and see the latest review (fetch data).
+
+- Write the social proof component in its default state
+- include css
+- write files in src
+- render in home page.js
+- CHECK POINT
+
+### add state to the one buttons
+
+- import useState
+- make state for country
+- write the component
+  - return 3 buttons
+  - add onClick with function that sets state to that country
+  - have a h1 (temporary) displays the resource
+
+### useEffect
+
+use the Effect module to run a simple console log every time
+component renders
+
+### add component to Home page
+
+might be a good point to add some styles
+
+### update the useEffect module
+
+- fetch data from the api
