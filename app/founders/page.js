@@ -3,26 +3,37 @@ import ReverseArticle from "@/src/reverse-article/reverse-article";
 export default function Page() {
   return (
     <>
-      <ReverseArticle
-        src={"/founders-1.png"}
-        alt={"old bloke"}
-        h3Text={"Our craftsmanship"}
-        pText={"Mike and mandy..."}
-      />
-      <ReverseArticle
-        src={"/founders-2.png"}
-        alt={"old bloke"}
-        h3Text={"foo"}
-        pText={"More foo"}
-      />
-      <ReverseArticle
-        src={"/founders-3.png"}
-        alt={"old bloke"}
-        h3Text={"foo"}
-        pText={`more foo: Repudiandae vitae ab tempore fugit veritatis porro eos doloremque quis. Officia cumque qui eius quo tenetur officiis sed ex aliquam quis pariatur. Doloribus distinctio quasi quibusdam aut rerum voluptatum quo
-        Laudantium sapiente porro odio fuga alias accusantium libero earum officia voluptatem, repellat reprehenderit vel temporibus pariatur quaerat nihil unde ullam? Facilis id deserunt est tenetur soluta quisquam iusto repellendus et.
-        Magni, dicta! Perferendis ipsa provident incidunt odit voluptatem nihil, commodi quia assumenda, reiciendis expedita, numquam qui magni deleniti voluptates ex maiores deserunt optio. Iure dolorum quis repudiandae rem! Eum, dolorum.`}
-      />
+      <div className="founders-orange-box">
+        <h2>Meet the artisans behind our masterpieces!</h2>
+        <h2>
+          Mike and Mandy studied and honed their craft under the fireplace
+          sensei Vik Von Blaze. Nothing gets delivered to a customer without
+          their sign off.
+        </h2>
+        <img src="/founder-mike-and-mandy.png"></img>
+      </div>
+      <div className="founders-card">
+        <h2>Our craftsmanship</h2>
+        <p>
+          Numbers don't lie - we've been around for 20+ years and have a long
+          list of happy customers who gladly recommend us.
+        </p>
+        <img src="/founders-1.png"></img>
+      </div>
+      <div className="founders-card">
+        <h2>Our experience</h2>
+        <p></p>
+        <img src="/founders-2.png"></img>
+      </div>
+      <div className="founders-card">
+        <h2>Our guarantee</h2>
+        <p>
+          If you're not 100% satisfied we will fully refund your purchase. Also,
+          we offer free repairs for the first 20 years of ownership. Find that
+          somewhere else!
+        </p>
+        <img src="/founders-3.png"></img>
+      </div>
     </>
   );
 }
