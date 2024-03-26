@@ -3,13 +3,15 @@ import { useState } from "react";
 import "./page.css";
 
 export default function Page() {
+	const [inputError, setInputError] = useState(false);
+
 	const [formData, setFormData] = useState({
-		name: "",
-		postcode: "",
-		address: "",
-		city: "",
-		phone: "",
-		email: "",
+		name: null,
+		postcode: null,
+		address: null,
+		city: null,
+		phone: null,
+		email: null,
 	});
 
 	const handleChange = (event) => {
@@ -19,7 +21,14 @@ export default function Page() {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		console.log(formData);
+		setInputError(false);
+		for (const [key, value] of Object.entries(formData)) {
+			if (!value) {
+				setInputError(true);
+			}
+		}
+
+		inputError && console.log(formData);
 	};
 
 	return (
@@ -29,7 +38,6 @@ export default function Page() {
 				<div className="form-section">
 					<label htmlFor="name">Full Name:</label>
 					<input
-						required
 						type="text"
 						id="name"
 						name="name"
@@ -86,6 +94,12 @@ export default function Page() {
 						onChange={handleChange}
 					/>
 				</div>
+
+				{inputError && (
+					<div style={{ color: "red" }}>
+						All inputs are required. Please complete empty fields.
+					</div>
+				)}
 
 				<button type="submit">Request Design Consultation</button>
 			</form>
