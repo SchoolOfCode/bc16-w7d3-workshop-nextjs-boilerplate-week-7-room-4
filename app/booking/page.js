@@ -3,14 +3,17 @@ import "./page.css";
 import { useState } from "react";
 
 export default function Page() {
-  const [formData, setFormData] = useState({
+  const defaultState = {
     fullName: "",
     postcode: "",
     house: "",
     city: "",
     phoneNumber: "",
     email: "",
-  });
+  };
+  const [formData, setFormData] = useState(defaultState);
+  const [errorDisplay, setErrorDisplay] = useState(false);
+  const [errorClass, setErrorClass] = useState("hide");
 
   const handleChange = (event) => {
     const { id, value } = event.target;
@@ -19,7 +22,21 @@ export default function Page() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formData);
+    if (
+      formData.city == "" ||
+      formData.email == "" ||
+      formData.house == "" ||
+      formData.fullName == "" ||
+      formData.postcode == "" ||
+      formData.phoneNumber == ""
+    ) {
+      setErrorDisplay(true);
+      setErrorClass("show");
+    } else {
+      setErrorDisplay(false);
+      setErrorClass("hide");
+      console.log(formData);
+    }
   };
 
   return (
@@ -46,6 +63,9 @@ export default function Page() {
           <label htmlFor="email">Email Address</label>
           <input id="email" type="email" onChange={handleChange}></input>
         </div>
+        <p className={errorClass}>
+          {errorDisplay && "Error all fields are required - some missing"}.
+        </p>
         <button type="submit">Request Design Consultation</button>
       </form>
     </div>

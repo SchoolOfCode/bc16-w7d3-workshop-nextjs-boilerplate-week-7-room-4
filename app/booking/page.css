@@ -47,3 +47,13 @@ form button{
     border: none;
     margin: 25px 0
 }
+
+.hide{
+    display: none;
+}
+
+.show{
+    display: block;
+    margin-top: 40px;
+    color: red;
+}
