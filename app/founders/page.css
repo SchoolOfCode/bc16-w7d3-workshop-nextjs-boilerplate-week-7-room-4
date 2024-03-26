@@ -1,0 +1,13 @@
+.founders-container{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+}
+
+.founders-orange-box {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
