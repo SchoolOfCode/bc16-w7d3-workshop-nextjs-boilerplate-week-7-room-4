@@ -14,6 +14,7 @@ export default function Page() {
   const [formData, setFormData] = useState(defaultState);
   const [errorDisplay, setErrorDisplay] = useState(false);
   const [errorClass, setErrorClass] = useState("hide");
+  const [missingInputs, setMissingInputs] = useState("The following:");
 
   const handleChange = (event) => {
     const { id, value } = event.target;
@@ -22,6 +23,25 @@ export default function Page() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setMissingInputs("The following:");
+    if (formData.city == "") {
+      setMissingInputs((prevFormData) => prevFormData + " city");
+    }
+    if (formData.email == "") {
+      setMissingInputs((prevFormData) => prevFormData + " email");
+    }
+    if (formData.house == "") {
+      setMissingInputs((prevFormData) => prevFormData + " house");
+    }
+    if (formData.fullName == "") {
+      setMissingInputs((prevFormData) => prevFormData + " full name");
+    }
+    if (formData.postcode == "") {
+      setMissingInputs((prevFormData) => prevFormData + " postcode");
+    }
+    if (formData.phoneNumber == "") {
+      setMissingInputs((prevFormData) => prevFormData + " phone number");
+    }
     if (
       formData.city == "" ||
       formData.email == "" ||
@@ -64,7 +84,9 @@ export default function Page() {
           <input id="email" type="email" onChange={handleChange}></input>
         </div>
         <p className={errorClass}>
-          {errorDisplay && "Error all fields are required - some missing"}.
+          {errorDisplay &&
+            `Error all fields are required - ${missingInputs} are missing`}
+          .
         </p>
         <button type="submit">Request Design Consultation</button>
       </form>
