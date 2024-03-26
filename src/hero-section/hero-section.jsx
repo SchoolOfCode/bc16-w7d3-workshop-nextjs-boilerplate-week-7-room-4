@@ -1,6 +1,7 @@
 import "./hero-section.css"
 import 'react'
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HeroSection(){
     return (
@@ -18,7 +19,7 @@ export default function HeroSection(){
                     <h1 id="orange-box-heading">Discover the Perfect Fireplace ...</h1>
                     <p id="contact-info">
                         Book consultation:{" "}
-                        <span className="phone-number">0121 345 6789</span>
+                        <span><Link href='/booking'>Bookings Page</Link></span>
                     </p>
                 </section>
             </div>
