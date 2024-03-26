@@ -80,3 +80,11 @@ might be a good point to add some styles
   5. Create state and handler functions for the form
   6. Create input validation
   7. Console log succesful result
+
+  # stretch goal
+
+  - adaptive error message depending on missing input fields
+
+  - needed method - HOW TO ADD TO PREVIOUS STATE USING UPDATE STATE FUNCTION
+  - TRY {previousState => previousState.push(missing_input)} in handleSubmit
+  - This worked alongside resetting it after every submit
