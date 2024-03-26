@@ -19,9 +19,7 @@ export default function Page() {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		alert(
-			`Name: ${formData.name}, Postcode: ${formData.postcode}, Address: ${formData.city} Email: ${formData.email}`
-		);
+		console.log(formData);
 	};
 
 	return (
@@ -31,6 +29,7 @@ export default function Page() {
 				<div className="form-section">
 					<label htmlFor="name">Full Name:</label>
 					<input
+						required
 						type="text"
 						id="name"
 						name="name"
