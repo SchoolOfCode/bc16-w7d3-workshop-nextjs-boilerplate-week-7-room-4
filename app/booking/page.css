@@ -1,3 +1,22 @@
+.heading {
+	background: #ea7e17;
+	padding: 1.5rem 1rem;
+	font-weight: 400;
+}
+
 .form-section {
 	background: rgb(223, 223, 223);
+}
+
+#submit-button {
+	background: #ea7e17;
+	width: 100%;
+	border: none;
+	margin: 2em 0;
+	padding: 1em;
+}
+
+.error-message {
+	color: red;
+	margin-top: 2em;
 }

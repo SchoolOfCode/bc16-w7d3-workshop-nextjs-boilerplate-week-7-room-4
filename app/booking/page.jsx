@@ -24,17 +24,21 @@ export default function Page() {
 		setInputError(false);
 		for (const [key, value] of Object.entries(formData)) {
 			if (!value) {
+				console.log(`${key} ${!value && "does not have a value."}`);
 				setInputError(true);
+				return;
 			}
 		}
-
-		inputError && console.log(formData);
+		if (inputError === false) {
+			console.log(formData);
+		}
 	};
 
 	return (
 		<>
+			<h1 className="heading">Design Booking</h1>
 			<form onSubmit={handleSubmit}>
-				<h3>Personal Information</h3>
+				<p>Personal Information</p>
 				<div className="form-section">
 					<label htmlFor="name">Full Name:</label>
 					<input
@@ -73,7 +77,7 @@ export default function Page() {
 					/>
 				</div>
 
-				<h3>Contact Information</h3>
+				<p>Contact Information</p>
 
 				<div className="form-section">
 					<label htmlFor="phone">Phone Number</label>
@@ -96,12 +100,14 @@ export default function Page() {
 				</div>
 
 				{inputError && (
-					<div style={{ color: "red" }}>
-						All inputs are required. Please complete empty fields.
+					<div className="error-message">
+						Error all fields are required - some missing.
 					</div>
 				)}
 
-				<button type="submit">Request Design Consultation</button>
+				<button id="submit-button" type="submit">
+					Request Design Consultation
+				</button>
 			</form>
 		</>
 	);
