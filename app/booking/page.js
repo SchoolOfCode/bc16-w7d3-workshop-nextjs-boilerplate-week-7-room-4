@@ -12,6 +12,8 @@ export default function Page() {
     email: "",
     errorDisplay: false,
     missingInputs: "The following:",
+    loadingDisplay: false,
+    buttonAttribute: false,
   };
 
   function reducer(state, action) {
@@ -24,6 +26,8 @@ export default function Page() {
           ...state,
           errorDisplay: false,
           missingInputs: "The following:",
+          loadingDisplay: true,
+          buttonAttribute: true,
         };
         for (const [key, value] of Object.entries(state)) {
           if (value === "") {
@@ -31,6 +35,7 @@ export default function Page() {
               ...newState,
               errorDisplay: true,
               missingInputs: newState.missingInputs + ` ${key}`,
+              loadingDisplay: false,
             };
           }
         }
@@ -82,7 +87,12 @@ export default function Page() {
             Error all fields are required - {state.missingInputs} are missing
           </p>
         )}
-        <button type="submit">Request Design Consultation</button>
+        {state.loadingDisplay && (
+          <p className="loadingClass">Submitting form...</p>
+        )}
+        <button disabled={state.buttonAttribute} type="submit">
+          Request Design Consultation
+        </button>
       </form>
     </div>
   );
