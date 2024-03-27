@@ -124,7 +124,7 @@ footer a {
   transform: translate(-50%,-50%);
   z-index: 100000;
   width: 100%;
-  max-width: 370px;
+  max-width: 450px;
   height: 100%;
   display: flex;
   justify-content: flex-end;
