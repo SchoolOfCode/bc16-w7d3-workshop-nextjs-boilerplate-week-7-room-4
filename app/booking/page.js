@@ -36,6 +36,7 @@ export default function Page() {
               errorDisplay: true,
               missingInputs: newState.missingInputs + ` ${key}`,
               loadingDisplay: false,
+              buttonAttribute: false,
             };
           }
         }
@@ -43,6 +44,20 @@ export default function Page() {
           console.log(newState);
         }
         return newState;
+      case "VALID_POSTCODE":
+        console.log("Valid postcode");
+        return {
+          ...state,
+          loadingDisplay: false,
+          errorDisplay: true,
+          missingInputs: "Validation passed",
+        };
+      case "INVALID_POSTCODE":
+        console.log("Invalid postcode");
+        return state;
+      case "VALIDATION_ERROR":
+        console.log("Validation error");
+        return state;
     }
   }
 
@@ -55,7 +70,35 @@ export default function Page() {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch({ type: "FORM_SUBMITTED" });
+
+    // dispatch type: FETCH STARTED
+    // PUT CALLBACK IN FETCH WHICH SENDS DISPATCH TO MANIPULATE COMPONENTS
+    // fetch
+    // convert to JSON
+    // send dispatch based on response
+
+    validatePostcode(state.postcode);
   };
+
+  async function validatePostcode(postcode) {
+    const URL = "https://api.postcodes.io/postcodes/";
+
+    fetch(`${URL}${postcode}`)
+      .then((response) => response.json())
+      .then((responseJson) => handleValidationResponse(responseJson))
+      .catch(() => dispatch({ type: "VALIDATION_ERROR" }));
+  }
+
+  function handleValidationResponse(response) {
+    const validCountries = ["England", "Scotland", "Wales"];
+    if (response.status === 200) {
+      if (validCountries.includes(response.result.country)) {
+        dispatch({ type: "VALID_POSTCODE" });
+      }
+    } else {
+      dispatch({ type: "INVALID_POSTCODE" });
+    }
+  }
 
   return (
     <div className="booking-container">
