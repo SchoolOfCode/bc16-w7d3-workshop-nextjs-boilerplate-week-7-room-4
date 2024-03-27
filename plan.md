@@ -96,3 +96,11 @@ might be a good point to add some styles
   - every setState function will need to be a case within a switch block
   - in page.js, replace every setState with a call to the corresponding action
   - update variables to access state object
+
+# MVP 7
+
+- Create loading screen on form submit (instant initially)
+- disable button when this screen is showing .
+- while loading screen is showing fetch the api and validate postcode
+- if response is 201 ok replace form with submit success
+- display error messages under fields that are incorrect
