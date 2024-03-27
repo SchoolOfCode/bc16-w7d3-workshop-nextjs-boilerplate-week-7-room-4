@@ -22,36 +22,9 @@ export default function Page() {
         const { id, value } = action.payload;
         return { ...state, [id]: value };
       case "FORM_SUBMITTED":
-        let newState = {
-          ...state,
-          errorDisplay: false,
-          missingInputs: "The following:",
-          loadingDisplay: true,
-          buttonAttribute: true,
-        };
-        for (const [key, value] of Object.entries(state)) {
-          if (value === "") {
-            newState = {
-              ...newState,
-              errorDisplay: true,
-              missingInputs: newState.missingInputs + ` ${key}`,
-              loadingDisplay: false,
-              buttonAttribute: false,
-            };
-          }
-        }
-        if (!newState.errorDisplay) {
-          console.log(newState);
-        }
-        return newState;
+        return formSubmitted(state);
       case "VALID_POSTCODE":
-        console.log("Valid postcode");
-        return {
-          ...state,
-          loadingDisplay: false,
-          errorDisplay: true,
-          missingInputs: "Validation passed",
-        };
+        return validPostcode(state);
       case "INVALID_POSTCODE":
         console.log("Invalid postcode");
         return state;
@@ -66,6 +39,41 @@ export default function Page() {
     const { id, value } = event.target;
     dispatch({ type: "UPDATE_FORM_DATA", payload: { id: id, value: value } });
   };
+
+  function formSubmitted(state) {
+    let newState = {
+      ...state,
+      errorDisplay: false,
+      missingInputs: "The following:",
+      loadingDisplay: true,
+      buttonAttribute: true,
+    };
+    for (const [key, value] of Object.entries(state)) {
+      if (value === "") {
+        newState = {
+          ...newState,
+          errorDisplay: true,
+          missingInputs: newState.missingInputs + ` ${key}`,
+          loadingDisplay: false,
+          buttonAttribute: false,
+        };
+      }
+    }
+    if (!newState.errorDisplay) {
+      console.log(newState);
+    }
+    return newState;
+  }
+
+  function validPostcode(state) {
+    console.log("Valid postcode");
+    return {
+      ...state,
+      loadingDisplay: false,
+      errorDisplay: true,
+      missingInputs: "Validation passed",
+    };
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
