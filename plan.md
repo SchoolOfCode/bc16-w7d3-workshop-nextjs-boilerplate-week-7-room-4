@@ -102,5 +102,7 @@ might be a good point to add some styles
 - Create loading screen on form submit (instant initially)
 - disable button when this screen is showing .
 - while loading screen is showing fetch the api and validate postcode
+- send postcode to api
+-
 - if response is 201 ok replace form with submit success
 - display error messages under fields that are incorrect
