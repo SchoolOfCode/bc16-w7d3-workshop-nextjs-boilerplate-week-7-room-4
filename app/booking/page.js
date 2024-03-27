@@ -19,19 +19,25 @@ export default function Page() {
       case "UPDATE_FORM_DATA":
         const { id, value } = action.payload;
         return { ...state, [id]: value };
-      case "UPDATE_MISSING_INPUTS":
-        return {
+      case "FORM_SUBMITTED":
+        let newState = {
           ...state,
-          missingInputs: state.missingInputs + ` ${action.payload}`,
+          errorDisplay: false,
+          missingInputs: "The following:",
         };
-      case "UPDATE_ERROR_DISPLAY_TRUE":
-        return { ...state, errorDisplay: true };
-      case "UPDATE_ERROR_DISPLAY_FALSE":
-        return { ...state, errorDisplay: false };
-      case "RESET_MISSING_INPUTS":
-        return { ...state, missingInputs: "The following:" };
-      default:
-        return state;
+        for (const [key, value] of Object.entries(state)) {
+          if (value === "") {
+            newState = {
+              ...newState,
+              errorDisplay: true,
+              missingInputs: newState.missingInputs + ` ${key}`,
+            };
+          }
+        }
+        if (!newState.errorDisplay) {
+          console.log(newState);
+        }
+        return newState;
     }
   }
 
@@ -43,20 +49,7 @@ export default function Page() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch({ type: "UPDATE_ERROR_DISPLAY_FALSE" });
-    dispatch({ type: "RESET_MISSING_INPUTS" });
-    for (const [key, value] of Object.entries(state)) {
-      if (value === "") {
-        console.log(key);
-        dispatch({ type: "UPDATE_ERROR_DISPLAY_TRUE" });
-        console.log(state.errorDisplay);
-        dispatch({ type: "UPDATE_MISSING_INPUTS", payload: key });
-      }
-    }
-    console.log(state.errorDisplay);
-    if (!state.errorDisplay) {
-      console.log(state);
-    }
+    dispatch({ type: "FORM_SUBMITTED" });
   };
 
   return (
