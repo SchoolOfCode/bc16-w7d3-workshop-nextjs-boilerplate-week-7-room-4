@@ -9,9 +9,12 @@ function useCountryData() {
 		const URL = `https://seal-app-336e8.ondigitalocean.app/reviews`;
 
 		try {
-			const response = await fetch(`${URL}?country=${country}`);
-			const responseData = await response.json();
-			setData(responseData);
+			fetch(`${URL}?country=${country}`)
+			.then (response => response.json())
+			.then (json => setData(json))
+			// const response = await fetch(`${URL}?country=${country}`);
+			// const responseData = await response.json();
+			// setData(responseData);
 		} catch (error) {
 			console.error("Error fetching data:", error);
 		}

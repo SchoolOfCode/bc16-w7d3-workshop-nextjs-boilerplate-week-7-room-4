@@ -62,3 +62,29 @@ might be a good point to add some styles
 ### update the useEffect module
 
 - fetch data from the api
+
+# MVP 5
+
+- create a new page with a form which contains:
+  Personal information - Full name, postcode, House/flat number, city
+  Contact information - Phone number, email address
+  The form should validate inputs on submit and show an error if empty
+  If no error then console log the data
+
+## breakdown
+
+- 1. Create a new page at the /booking endpoint
+  2. Link to this page within the book consultation line of orange box
+  3. In the booking page: create the form architecture
+  4. Style the form elements
+  5. Create state and handler functions for the form
+  6. Create input validation
+  7. Console log succesful result
+
+  # stretch goal
+
+  - adaptive error message depending on missing input fields
+
+  - needed method - HOW TO ADD TO PREVIOUS STATE USING UPDATE STATE FUNCTION
+  - TRY {previousState => previousState.push(missing_input)} in handleSubmit
+  - This worked alongside resetting it after every submit
