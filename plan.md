@@ -88,3 +88,11 @@ might be a good point to add some styles
   - needed method - HOW TO ADD TO PREVIOUS STATE USING UPDATE STATE FUNCTION
   - TRY {previousState => previousState.push(missing_input)} in handleSubmit
   - This worked alongside resetting it after every submit
+
+# MVP 6
+
+- Move all states into a reducer function
+  - combine all states into an object with empty values for each
+  - every setState function will need to be a case within a switch block
+  - in page.js, replace every setState with a call to the corresponding action
+  - update variables to access state object
