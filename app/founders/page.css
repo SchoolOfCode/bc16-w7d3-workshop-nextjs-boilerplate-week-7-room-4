@@ -24,5 +24,13 @@
 }
 
 .founders-card img {
+	box-sizing: border-box;
 	max-width: 360px;
+	width: 100%;
+	padding: 0;
+	margin: 0
+}
+
+.founders-card{
+	padding: 1em
 }
