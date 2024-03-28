@@ -4,14 +4,14 @@ import { useState, useReducer } from "react";
 
 export default function Page() {
   const defaultState = {
-    fullName: "",
-    postcode: "",
-    house: "",
-    city: "",
-    phoneNumber: "",
-    email: "",
+    Full_Name: "",
+    Postcode: "",
+    House: "",
+    City: "",
+    Phone_Number: "",
+    Email: "",
     errorDisplay: false,
-    missingInputs: "The following:",
+    missingInputs: " ",
     loadingDisplay: false,
     buttonAttribute: false,
     displayForm: true,
@@ -47,7 +47,7 @@ export default function Page() {
     let newState = {
       ...state,
       errorDisplay: false,
-      missingInputs: "The following:",
+      missingInputs: " ",
       loadingDisplay: true,
       buttonAttribute: true,
     };
@@ -56,7 +56,7 @@ export default function Page() {
         newState = {
           ...newState,
           errorDisplay: true,
-          missingInputs: newState.missingInputs + ` ${key}`,
+          missingInputs: newState.missingInputs + ` ${key},`,
           loadingDisplay: false,
           buttonAttribute: false,
         };
@@ -92,7 +92,7 @@ export default function Page() {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch({ type: "FORM_SUBMITTED" });
-    validatePostcode(state.postcode);
+    validatePostcode(state.Postcode);
   };
 
   async function validatePostcode(postcode) {
@@ -128,12 +128,12 @@ export default function Page() {
         <form onSubmit={handleSubmit}>
           <p>Personal Information</p>
           <div className="form-container">
-            <label htmlFor="fullName">Full Name</label>
-            <input id="fullName" type="text" onChange={handleChange}></input>
-            <label htmlFor="postcode">Postcode</label>
+            <label htmlFor="Full_Name">Full Name</label>
+            <input id="Full_Name" type="text" onChange={handleChange}></input>
+            <label htmlFor="Postcode">Postcode</label>
             <input
               className={state.postcodeClass}
-              id="postcode"
+              id="Postcode"
               type="text"
               onChange={handleChange}
             ></input>
@@ -142,22 +142,28 @@ export default function Page() {
                 England, Wales, Scotland bookings only
               </p>
             )}
-            <label htmlFor="house">House/Flat Number and Street Name</label>
-            <input id="house" type="text" onChange={handleChange}></input>
-            <label htmlFor="city">City</label>
-            <input id="city" type="text" onChange={handleChange}></input>
+            <label htmlFor="House">House/Flat Number and Street Name</label>
+            <input id="House" type="text" onChange={handleChange}></input>
+            <label htmlFor="City">City</label>
+            <input id="City" type="text" onChange={handleChange}></input>
           </div>
           <p>Contact Information</p>
           <div className="form-container">
-            <label htmlFor="phoneNumber">Phone Number</label>
-            <input id="phoneNumber" type="text" onChange={handleChange}></input>
-            <label htmlFor="email">Email Address</label>
-            <input id="email" type="email" onChange={handleChange}></input>
+            <label htmlFor="Phone_Number">Phone Number</label>
+            <input
+              id="Phone_Number"
+              type="text"
+              onChange={handleChange}
+            ></input>
+            <label htmlFor="Email">Email Address</label>
+            <input id="Email" type="email" onChange={handleChange}></input>
           </div>
 
           {state.errorDisplay && (
             <p className="errorClass show">
-              Error all fields are required - {state.missingInputs} are missing
+              Error - all fields are required. The following fields are missing:
+              <br />
+              {state.missingInputs.replace(/_/g, " ").slice(0, -1)}
             </p>
           )}
           {state.loadingDisplay && (
