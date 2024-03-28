@@ -14,6 +14,9 @@ export default function Page() {
     missingInputs: "The following:",
     loadingDisplay: false,
     buttonAttribute: false,
+    displayForm: true,
+    postcodeError: false,
+    postcodeClass: "  ",
   };
 
   function reducer(state, action) {
@@ -27,7 +30,7 @@ export default function Page() {
         return validPostcode(state);
       case "INVALID_POSTCODE":
         console.log("Invalid postcode");
-        return state;
+        return invalidPostcode(state);
       case "VALIDATION_ERROR":
         console.log("Validation error");
         return state;
@@ -70,25 +73,32 @@ export default function Page() {
     return {
       ...state,
       loadingDisplay: false,
-      errorDisplay: true,
-      missingInputs: "Validation passed",
+      errorDisplay: false,
+      displayForm: false,
+    };
+  }
+
+  function invalidPostcode(state) {
+    return {
+      ...state,
+      loadingDisplay: false,
+      buttonAttribute: false,
+      displayForm: true,
+      postcodeError: true,
+      postcodeClass: "postcodeError",
     };
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch({ type: "FORM_SUBMITTED" });
-
-    // dispatch type: FETCH STARTED
-    // PUT CALLBACK IN FETCH WHICH SENDS DISPATCH TO MANIPULATE COMPONENTS
-    // fetch
-    // convert to JSON
-    // send dispatch based on response
-
     validatePostcode(state.postcode);
   };
 
   async function validatePostcode(postcode) {
+    if (postcode === "") {
+      return;
+    }
     const URL = "https://api.postcodes.io/postcodes/";
 
     fetch(`${URL}${postcode}`)
@@ -113,38 +123,51 @@ export default function Page() {
       <div className="booking-title">
         <h2>Design Booking</h2>
       </div>
-      <form onSubmit={handleSubmit}>
-        <p>Personal Information</p>
-        <div className="form-container">
-          <label htmlFor="fullName">Full Name</label>
-          <input id="fullName" type="text" onChange={handleChange}></input>
-          <label htmlFor="postcode">Postcode</label>
-          <input id="postcode" type="text" onChange={handleChange}></input>
-          <label htmlFor="house">House/Flat Number and Street Name</label>
-          <input id="house" type="text" onChange={handleChange}></input>
-          <label htmlFor="city">City</label>
-          <input id="city" type="text" onChange={handleChange}></input>
-        </div>
-        <p>Contact Information</p>
-        <div className="form-container">
-          <label htmlFor="phoneNumber">Phone Number</label>
-          <input id="phoneNumber" type="text" onChange={handleChange}></input>
-          <label htmlFor="email">Email Address</label>
-          <input id="email" type="email" onChange={handleChange}></input>
-        </div>
+      {!state.displayForm && <p className="form-submitted">Form Submitted</p>}
+      {state.displayForm && (
+        <form onSubmit={handleSubmit}>
+          <p>Personal Information</p>
+          <div className="form-container">
+            <label htmlFor="fullName">Full Name</label>
+            <input id="fullName" type="text" onChange={handleChange}></input>
+            <label htmlFor="postcode">Postcode</label>
+            <input
+              className={state.postcodeClass}
+              id="postcode"
+              type="text"
+              onChange={handleChange}
+            ></input>
+            {state.postcodeError && (
+              <p id="postcodeError" style={{ color: "red", margin: 0 }}>
+                England, Wales, Scotland bookings only
+              </p>
+            )}
+            <label htmlFor="house">House/Flat Number and Street Name</label>
+            <input id="house" type="text" onChange={handleChange}></input>
+            <label htmlFor="city">City</label>
+            <input id="city" type="text" onChange={handleChange}></input>
+          </div>
+          <p>Contact Information</p>
+          <div className="form-container">
+            <label htmlFor="phoneNumber">Phone Number</label>
+            <input id="phoneNumber" type="text" onChange={handleChange}></input>
+            <label htmlFor="email">Email Address</label>
+            <input id="email" type="email" onChange={handleChange}></input>
+          </div>
 
-        {state.errorDisplay && (
-          <p className="errorClass show">
-            Error all fields are required - {state.missingInputs} are missing
-          </p>
-        )}
-        {state.loadingDisplay && (
-          <p className="loadingClass">Submitting form...</p>
-        )}
-        <button disabled={state.buttonAttribute} type="submit">
-          Request Design Consultation
-        </button>
-      </form>
+          {state.errorDisplay && (
+            <p className="errorClass show">
+              Error all fields are required - {state.missingInputs} are missing
+            </p>
+          )}
+          {state.loadingDisplay && (
+            <p className="loadingClass">Submitting form...</p>
+          )}
+          <button disabled={state.buttonAttribute} type="submit">
+            Request Design Consultation
+          </button>
+        </form>
+      )}
     </div>
   );
 }

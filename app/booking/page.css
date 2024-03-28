@@ -57,3 +57,7 @@ form button{
     margin-top: 40px;
     color: red;
 }
+
+.postcodeError{
+    border: 1px solid red
+}
