@@ -35,3 +35,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 deleteme.jsx
+# Sentry Config File
+.sentryclirc
